@@ -37,16 +37,16 @@ public class LauncherStart {
         servletHandler.addServlet(new ServletHolder(new InvalidRequestServlet()), "/*");
         FilterHolder guiceFilter = new FilterHolder(injector.getInstance(GuiceFilter.class));
         servletHandler.addFilter(guiceFilter, "/*", EnumSet.allOf(DispatcherType.class));
-        ResourceHandler resourceHandler = new ResourceHandler();
+        /*ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setDirectoriesListed(true);
         resourceHandler.setWelcomeFiles(new String[]{"index.html"});
         String webappDirLocation = "src/main/webapp/";
         String absolutePath = new File(webappDirLocation).getAbsolutePath();
-        resourceHandler.setResourceBase(absolutePath);
+        resourceHandler.setResourceBase(absolutePath);*/
 
 
         HandlerList handlers = new HandlerList();
-        handlers.setHandlers(new Handler[] { resourceHandler, servletHandler, new DefaultHandler() });
+        handlers.setHandlers(new Handler[] { /*resourceHandler,*/ servletHandler, new DefaultHandler() });
 
         server.setHandler(handlers);
         server.start();
