@@ -25,11 +25,11 @@ public class LinkLogResource {
     }
 
     @GET
-    @Path("add/{ip}/{cpusn}/{hddsn}")
+    @Path("in/{ip}/{cpusn}/{hddsn}/{controllerVersion}/{handlerVersion}")
     @OnException("AddLinkLogFail")
     @Produces(MediaType.APPLICATION_JSON)
-    public String addLinkLog(@PathParam("ip") String ip,@PathParam("cpusn") String cpusn,@PathParam("hddsn") String hddsn){
-        return linkLogFacade.link(ip,cpusn,hddsn);
+    public String addLinkLog(@PathParam("ip") String ip,@PathParam("cpusn") String cpusn,@PathParam("hddsn") String hddsn,@PathParam("controllerVersion") String controllerVersion,@PathParam("handlerVersion") String handlerVersion){
+        return linkLogFacade.link(ip,cpusn,hddsn,controllerVersion,handlerVersion);
     }
 
 }

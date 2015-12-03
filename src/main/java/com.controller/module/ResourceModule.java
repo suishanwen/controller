@@ -33,8 +33,8 @@ public class ResourceModule extends JerseyServletModule {
         bind(BlackListResource.class);
         bind(CorsFilter.class).in(Singleton.class);
         Map<String, String> params = new HashMap<String, String>();
-        params.put(PROPERTY_PACKAGES, "com.vote.api.*");
-        filter("/api").through(CorsFilter.class);
+        params.put(PROPERTY_PACKAGES, "com.controller.api.*");
+        filter("/api/*").through(CorsFilter.class);
         serve("/api/*").with(GuiceContainer.class, params);
     }
 }

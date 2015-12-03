@@ -10,7 +10,7 @@ import java.util.List;
 
 public class BlackListFacade extends BaseFacade{
 
-    public String verify(String ip,String hddsn,String cpusn){
+    public String verify(String ip,String cpusn,String hddsn){
         if(ip.split("\\.").length!=4){
             return "no";
         }
@@ -18,8 +18,8 @@ public class BlackListFacade extends BaseFacade{
         try {
             entityManager.createQuery("select bl from BlackList bl where bl.ip=:ip or bl.hddsn=:hddsn or bl.cpusn=:cpusn or bl.ipSec=:ipSec")
                     .setParameter("ip",ip)
-                    .setParameter("hddsn",hddsn)
                     .setParameter("cpusn",cpusn)
+                    .setParameter("hddsn",hddsn)
                     .setParameter("ipSec",ipSec)
                     .getSingleResult();
             return "no";
@@ -36,12 +36,12 @@ public class BlackListFacade extends BaseFacade{
     }
 
     @Transactional
-    public BlackList add(String ip,String ipSec,String hddsn,String cpusn){
+    public BlackList add(String ip,String ipSec,String cpusn,String hddsn){
         BlackList bl=new BlackList();
         bl.setIp(ip);
         bl.setIpSec(ipSec);
-        bl.setHddsn(hddsn);
         bl.setCpusn(cpusn);
+        bl.setHddsn(hddsn);
         try {
             entityManager.persist(bl);
             return bl;
